@@ -134,4 +134,12 @@ function checkWinner() {
 
     return winner;
 }
+function randomMove() {
+    var rnd = getRandomInt(2);
+    console.log(rnd);
+    if (rnd == 1) {
+        autoDrawing();
+    }
+    return true;
+}
 // Write your JavaScript code.
