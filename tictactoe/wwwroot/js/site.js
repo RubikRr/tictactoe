@@ -8,4 +8,10 @@ var user_sym = "x";
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
+
+function clearTable() {
+    for (var i = 0; i < arr.length; i++) {
+        arr[i].innerHTML = "";
+    }
+}
 // Write your JavaScript code.
