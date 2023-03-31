@@ -14,4 +14,18 @@ function clearTable() {
         arr[i].innerHTML = "";
     }
 }
+function checkFreeSpace() {
+    var res = false;
+
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i].hasChildNodes()) {
+            res = false;
+        } else {
+            res = true;
+            break;
+        }
+    }
+
+    return res;
+}
 // Write your JavaScript code.
