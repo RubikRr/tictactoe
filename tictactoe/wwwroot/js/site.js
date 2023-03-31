@@ -28,4 +28,29 @@ function checkFreeSpace() {
 
     return res;
 }
+
+function autoDrawing() {
+
+    if (!checkFreeSpace()) {
+
+        win_text.innerHTML = "Выиграла ничья! ";
+        win_text.style.color = "blue";
+        winning.style.display = "block";
+        winning.style.backgroundColor = "rgba(0,0,200, 0.5)";
+        win_block.style.display = "block";
+
+        return false;
+    }
+    var el, rnd;
+
+    do {
+        rnd = getRandomInt(arr.length);
+        el = arr[rnd];
+        // console.log(rnd);
+    } while (!drawSym(el, comp_sym));
+
+    if (!checkFreeSpace()) {
+        autoDrawing();
+    }
+}
 // Write your JavaScript code.
