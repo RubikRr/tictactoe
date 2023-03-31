@@ -168,5 +168,23 @@ function drawSym(item, sym = user_sym) {
     }
     return true;
 }
+function addHandler(el, ev, func) {
+    try {
+        el.addEventListener(ev, func, false);
+    }
+    catch (e) {
+        el.attachEvent("on" + ev, func);
+    }
+}
 
+
+function removerEvent(el, ev, func) {
+    try {
+        el.removeEventListener(ev, func, false);
+
+    } catch (x) {
+        el.detachEvent("on" + ev, func);
+
+    }
+}
 // Write your JavaScript code.
