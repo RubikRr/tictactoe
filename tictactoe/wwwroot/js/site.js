@@ -142,4 +142,31 @@ function randomMove() {
     }
     return true;
 }
+function drawSym(item, sym = user_sym) {
+    // console.log(item);
+    if (item.hasChildNodes()) return false;
+    item.innerHTML = sym;
+
+    var winner = checkWinner();
+
+    if (sym == user_sym && !winner)
+        autoDrawing();
+
+
+    if (winner == user_sym) {
+        win_text.innerHTML = "Вы выиграли!";
+        win_text.style.color = "green";
+        winning.style.backgroundColor = "rgba(0,200,0, 0.5)";
+    } else if (winner == comp_sym) {
+        win_text.innerHTML = "Выиграл компьютер! Попоробуйте еще раз!";
+        win_text.style.color = "red";
+        winning.style.backgroundColor = "rgba(200,0,0, 0.5)";
+    }
+    if (winner) {
+        winning.style.display = "block";
+        win_block.style.display = "block";
+    }
+    return true;
+}
+
 // Write your JavaScript code.
