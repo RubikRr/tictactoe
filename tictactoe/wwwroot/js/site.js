@@ -5,6 +5,32 @@ var arr, arr_events = [], win_block, winner, again, winning, game;
 var comp_sym = "o";
 var user_sym = "x";
 
+onload = function () {
+    game = document.getElementById("game");
+    arr = game.getElementsByClassName("inner");
+    win_block = document.getElementById("win_block");
+    win_text = win_block.getElementsByClassName("winner")[0];
+    again = win_block.getElementsByClassName("again")[0];
+    winning = game.getElementsByClassName("winning")[0];
+
+    again.onclick = function () {
+        winning.style.display = "none";
+        win_block.style.display = "none";
+        clearTable();
+        randomMove();
+    };
+
+    for (var i = 0; i < arr.length; i++) {
+        arr[i].onclick = function () {
+            drawSym(this);
+        };
+
+    }
+    randomMove();
+
+};
+
+
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
