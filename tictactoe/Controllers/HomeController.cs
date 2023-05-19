@@ -18,6 +18,22 @@ namespace tictactoe.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult Main() { return View(); }
+        [HttpPost]
+        public string Main(string name,int age) 
+        {
+            var user=new User { Name = name,Age = age};
+
+            //добавление игрока в базу
+            return user.ToString();
+        }
+
+        public IActionResult Gamers() 
+        {
+            return View(); 
+        }
+
         public IActionResult Privacy()
         {
             return View();
