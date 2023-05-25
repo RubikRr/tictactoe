@@ -1,38 +1,50 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
+using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Drawing;
 using tictactoe.Models;
+using static tictactoe.DatabaseContext;
 
 namespace tictactoe.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private DatabaseContext db;
+        public HomeController(DatabaseContext context)
         {
-            _logger = logger;
+            db = context;
         }
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
 
         public IActionResult Index()
         {
             return View();
         }
-
-        [HttpGet]
-        public IActionResult Main() { return View(); }
+        public async Task<IActionResult> Players()
+        {
+            return View(await db.Users.ToListAsync());
+        }
+        public IActionResult Create()
+        {
+            return View();
+        }
         [HttpPost]
-        public string Main(string name,int age) 
+        public async Task<IActionResult> Create(string name,string nickname)
         {
-            var user=new User { Name = name,Age = age};
-
-            //добавление игрока в базу
-            return user.ToString();
+            var user = new User(name, nickname);
+            db.Users.Add(user);
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
-        public IActionResult Gamers() 
-        {
-            return View(); 
-        }
+
 
         public IActionResult Privacy()
         {

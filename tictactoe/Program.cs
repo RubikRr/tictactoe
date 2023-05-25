@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using static tictactoe.DatabaseContext;
+using tictactoe.Models;
+
 namespace tictactoe
 {
     public class Program
@@ -5,8 +9,9 @@ namespace tictactoe
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
-            // Add services to the container.
+            string connection = "Server=(localdb)\\mssqllocaldb;Database=tictactoe;Trusted_Connection=True;";
+            builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(connection));
+            //// Add services to the container.
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
@@ -33,6 +38,7 @@ namespace tictactoe
 
 
             app.Run();
+            
         }
     }
 }
