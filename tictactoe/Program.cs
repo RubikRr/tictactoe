@@ -10,7 +10,11 @@ namespace tictactoe
         {
             var builder = WebApplication.CreateBuilder(args);
             string connection = "Server=(localdb)\\mssqllocaldb;Database=tictactoe;Trusted_Connection=True;";
+
+
             builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(connection));
+
+
             //// Add services to the container.
             builder.Services.AddControllersWithViews();
 
